@@ -318,9 +318,6 @@
       h1 { font-size: 40px; }
     }
 
-    /* ── bilingual ── */
-    html[lang='en'] .zh { display: none; }
-    html[lang='zh-CN'] .en { display: none; }
     /* ── lang toggle ── */
     .lang-toggle {
       position: fixed; top: 18px; right: 24px; z-index: 1000;
@@ -652,9 +649,12 @@ function setLang(lang) {
     const el = document.getElementById(id);
     if (el) el.innerHTML = val;
   }
-  // swap all data-zh / data-en elements
-  document.querySelectorAll('[data-zh]').forEach(el => {
-    el.innerHTML = el.dataset[lang] || el.dataset.zh;
+  // show/hide bilingual spans
+  document.querySelectorAll('.zh').forEach(el => {
+    el.style.display = lang === 'en' ? 'none' : '';
+  });
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? '' : 'none';
   });
 }
 
