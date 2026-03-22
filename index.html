@@ -317,26 +317,53 @@
       }
       h1 { font-size: 40px; }
     }
+
+    /* ── lang toggle ── */
+    .lang-toggle {
+      position: fixed; top: 18px; right: 24px; z-index: 1000;
+      display: flex;
+      background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(43,38,35,0.15);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(67,52,40,0.10);
+      font-size: 13px;
+      font-family: inherit;
+    }
+    .lang-toggle button {
+      padding: 7px 18px; border: none;
+      background: transparent; cursor: pointer;
+      color: var(--muted); font-family: inherit;
+      transition: background .2s, color .2s;
+    }
+    .lang-toggle button.active {
+      background: var(--accent); color: #fff; border-radius: 999px;
+    }
   </style>
 </head>
 <body>
+<div class="lang-toggle" id="langToggle">
+  <button id="btnZh" class="active" onclick="setLang('zh')">中文</button>
+  <button id="btnEn" onclick="setLang('en')">EN</button>
+</div>
   <header class="hero">
     <div class="wrap">
       <div class="hero-card">
-        <div class="eyebrow">艺术策划申请材料</div>
+        <div class="eyebrow" id="hero-eyebrow">艺术策划申请材料</div>
         <h1>真实存在 <span style="font-weight:400; opacity:.78;">True Existence</span></h1>
         <div class="meta">
           <div class="meta-item">
-            <span class="meta-label">策展人</span>
-            <span class="meta-value">花花</span>
+            <span class="meta-label" id="hero-label-curator">策展人</span>
+            <span class="meta-value" id="hero-val-curator">花花</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">地点</span>
-            <span class="meta-value">上海当代艺术博物馆 二楼 4 号展厅</span>
+            <span class="meta-label" id="hero-label-venue">地点</span>
+            <span class="meta-value" id="hero-val-venue">上海当代艺术博物馆 二楼 4 号展厅</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">结构</span>
-            <span class="meta-value">序章＋三章＋尾声／附公共教育与出版物</span>
+            <span class="meta-label" id="hero-label-structure">结构</span>
+            <span class="meta-value" id="hero-val-structure">序章＋三章＋尾声／附公共教育与出版物</span>
           </div>
         </div>
       </div>
@@ -345,18 +372,18 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#theme">主题阐释</a>
-      <a href="#narrative">叙事框架</a>
-      <a href="#space">空间设计</a>
-      <a href="#public">公共教育</a>
-      <a href="#publication">出版物</a>
-      <a href="#budget">预算</a>
+      <a href="#theme" id="nav-theme">主题阐释</a>
+      <a href="#narrative" id="nav-narrative">叙事框架</a>
+      <a href="#space" id="nav-space">空间设计</a>
+      <a href="#public" id="nav-public">公共教育</a>
+      <a href="#publication" id="nav-publication">出版物</a>
+      <a href="#budget" id="nav-budget">预算</a>
     </div>
   </nav>
 
   <main class="wrap">
     <section class="section" id="theme">
-      <h2>1）主题阐释</h2>
+      <h2 id="h2-theme">1）主题阐释</h2>
       <p class="lead">《真实存在》并不试图把文本“再现”为情绪景观，而是将其作为仍在生成中的社会文本，检验它如何离开手机屏幕，进入真实的公共空间并继续发挥作用。</p>
       <p>2016–2026 年间，策展人花花在公众号“真实存在”上连载了 190 余篇文本，围绕母亲及数位至亲的离世，以及此后漫长的哀悼与继续生活，持续书写与思考。这是一部在算法与注意力经济主导的时代逆势生长的慢写作：它源于极度私人的丧失经验，却在不断的转发与共鸣中，逐渐牵连起照护劳动、女性经验、城市生活与代际记忆，成为一个远超个体叙述的公共文本场域。</p>
       <p>展览将此书写视为研究的延伸与现场的检验。三章结构——“缝隙里长出的花”“作用力是相互的”“AI 也是爱”——并非线性的情绪阶段，而是三种关系场：人与环境的生存条件、人与他人的相互作用力、人与机器之间的共同创作。</p>
@@ -365,7 +392,7 @@
     </section>
 
     <section class="section" id="narrative">
-      <h2>2）展览叙事框架、作品及艺术家清单</h2>
+      <h2 id="h2-narrative">2）展览叙事框架、作品及艺术家清单</h2>
       <div class="note">整体结构：每个章节都由《真实存在》文字内容串联，形成一条由私人写作向公共经验展开的叙事路径。</div>
 
       <div class="timeline">
@@ -425,7 +452,7 @@
     </section>
 
     <section class="section" id="space">
-      <h2>3）空间设计与规划</h2>
+      <h2 id="h2-space">3）空间设计与规划</h2>
       <div class="two-col">
         <div class="card">
           <h4>PSA 二楼 4 号展厅空间逻辑</h4>
@@ -452,7 +479,7 @@
     </section>
 
     <section class="section" id="public">
-      <h2>4）展期内公共教育活动计划</h2>
+      <h2 id="h2-public">4）展期内公共教育活动计划</h2>
       <div class="activity-grid">
         <article class="card">
           <h4>朗读夜与对谈</h4>
@@ -546,12 +573,89 @@
 
   <div class="wrap" style="padding: 48px 0 24px;">
     <div style="background: rgba(255,255,255,0.72); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.7); border-radius: 24px; box-shadow: 0 20px 50px rgba(67,52,40,0.08); padding: 32px 40px;">
-      <div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: #7e6a56; margin-bottom: 12px;">关于策展人</div>
-      <p style="margin: 0; line-height: 1.9;"><strong>花花</strong>，从事艺术领域十余年，是一位热爱艺术的高校美育行政人员与跨学科探索者，现居深圳。</p>
+      <div id="bio-label" style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: #7e6a56; margin-bottom: 12px;">关于策展人</div>
+      <p id="bio-text" style="margin: 0; line-height: 1.9;"><strong>花花</strong>，北京舞蹈学院艺术管理学士，香港中文大学文化管理硕士。从事艺术领域十余年，现任高校美育行政人员，长期投身跨学科艺术实践与公共文化推广，关注哀悼叙事、女性经验与人机共写等议题，现居深圳。</p>
     </div>
   </div>
   <div class="wrap footer">
-    <p>真实存在 True Existence｜艺术策划申请材料 HTML 页面</p>
+    
   </div>
+
+<script>
+const TRANS = {
+  zh: {
+    // nav
+    "nav-theme": "主题阐释",
+    "nav-narrative": "叙事框架",
+    "nav-space": "空间设计",
+    "nav-public": "公共教育",
+    "nav-publication": "出版物",
+    "nav-budget": "预算",
+    // hero
+    "hero-eyebrow": "艺术策划申请材料",
+    "hero-label-curator": "策展人",
+    "hero-label-venue": "地点",
+    "hero-label-structure": "结构",
+    "hero-val-curator": "花花",
+    "hero-val-venue": "上海当代艺术博物馆 二楼 4 号展厅",
+    "hero-val-structure": "序章＋三章＋尾声／附公共教育与出版物",
+    // sections h2
+    "h2-theme": "1）主题阐释",
+    "h2-narrative": "2）展览叙事框架、作品及艺术家清单",
+    "h2-space": "3）空间设计与规划",
+    "h2-public": "4）展期内公共教育活动计划",
+    "h2-publication": "5）出版物计划",
+    "h2-budget": "6）预算",
+    // bio
+    "bio-label": "关于策展人",
+    "bio-text": "<strong>花花</strong>，北京舞蹈学院艺术管理学士，香港中文大学文化管理硕士。从事艺术领域十余年，现任高校美育行政人员，长期投身跨学科艺术实践与公共文化推广，关注哀悼叙事、女性经验与人机共写等议题，现居深圳。",
+  },
+  en: {
+    // nav
+    "nav-theme": "Concept",
+    "nav-narrative": "Narrative",
+    "nav-space": "Space",
+    "nav-public": "Public Programs",
+    "nav-publication": "Publications",
+    "nav-budget": "Budget",
+    // hero
+    "hero-eyebrow": "Exhibition Proposal",
+    "hero-label-curator": "Curator",
+    "hero-label-venue": "Venue",
+    "hero-label-structure": "Structure",
+    "hero-val-curator": "Huahua",
+    "hero-val-venue": "Power Station of Art, 2F Hall 4, Shanghai",
+    "hero-val-structure": "Prologue + 3 Chapters + Epilogue / with Public Programs & Publications",
+    // sections h2
+    "h2-theme": "1) Curatorial Concept",
+    "h2-narrative": "2) Narrative Framework, Works & Artists",
+    "h2-space": "3) Spatial Design & Layout",
+    "h2-public": "4) Public Programs During Exhibition",
+    "h2-publication": "5) Publication Plan",
+    "h2-budget": "6) Budget",
+    // bio
+    "bio-label": "About the Curator",
+    "bio-text": "<strong>Huahua</strong> holds a B.A. in Arts Management from Beijing Dance Academy and an M.A. in Cultural Management from The Chinese University of Hong Kong. With over a decade of experience in the arts field, she currently serves as an arts education administrator at a university in Shenzhen. Her practice spans interdisciplinary art projects and public cultural programming, with a focus on mourning narratives, women's lived experience, and human–AI co-writing.",
+  }
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+  document.getElementById('btnZh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+  const t = TRANS[lang];
+  for (const [id, val] of Object.entries(t)) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = val;
+  }
+}
+
+// Init
+(function() {
+  const saved = localStorage.getItem('lang') || 'zh';
+  if (saved === 'en') setLang('en');
+})();
+</script>
 </body>
 </html>
